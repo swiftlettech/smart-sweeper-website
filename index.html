@@ -1,23 +1,579 @@
 <!DOCTYPE html>
-<html>
-<style>
-body {
-    background-image: url("SmartCash-World-1920x1080.png"); 
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    background-opacity: 0.5;
-    }
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="SmartNodes">
+	<meta name="robots" content="index,follow">
+	<meta name="keywords" content="SmartNodes, SmartNode, SmartCash, masternode, node, $SMART, SMART, InstantPay, Bitcoin, Zerocoin, Zcoin, coins, coin, crypocurrency, crypto, privacy, blockchain, distributed ledger, decentralized">
+    <link rel="icon" href="favicon.ico">
 
-</style>
-    
-<title>SMART Sweeper</title>
-    
-<body>
-  
-    <center>   
-    <h1>SMART Sweeper</h1>
-    <p>This page is currently under construction. Please check back at a later time.</p>
-    </center>
-</body>
+    <title>SmartNodes.cc</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/smartnodes-narrow.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+
+    <div class="container">
+
+     <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a href="http://smartnodes.cc" alt="SmartNodes.cc" title="SmartNodes.cc"><img src="img/smartnodes.png" alt="SmartNodes.cc Logo"></a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#SmartNode_Setup">SmartNode Setup</a></li>
+              <li><a href="#SmartNode_Hardening">SmartNode Hardening</a></li>
+              <li><a href="#SmartNode_Commands">SmartNode Commands</a></li>
+              <li><a href="#SmartNode_FAQ">SmartNode FAQ</a></li>
+
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SmartNode Resources <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-header">External Resources</li>
+                  <li><a href="https://smartcash.bitcoiner.me/smartnodes/list">SmartNodes List</a></li>
+                  <li><a href="https://smartcash.bitcoiner.me/smartnodes/calculator">SmartNodes Income Calculator</a></li>
+                  <li><a href="https://smartnode.aneis.ch/smartnode_chart.html">SmartNodes Count Chart</a></li>
+                  <li><a href="https://smartnode.aneis.ch/smartnode_winners.html">SmartNodes Reward Payments</a></li>
+                  <li><a href="https://smartnode.aneis.ch/smartnode_balances.html">SmartNodes Balances</a></li>
+                  <li><a href="https://smartcash.bitcoiner.me/smartnodes/worldmap/">SmartNodes World Map</a></li>
+                  <li><a href="https://smartcash.bitcoiner.me/smartnodes/payouts">SmartNodes Past Payouts</a></li>
+<!--
+                  <li role="separator" class="divider"></li>
+                  <li class="dropdown-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+-->
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+
+
+      <div class="jumbotron">
+		<a href="https://smartcash.cc/wallets/" alt="SmartNodes are here!" title="SmartNodes are here!"><img src="img/SmartNodes-Over-10000.jpg" class="img-responsive" alt="SmartNodes are here!"></a>
+        <h1><a href="https://smartcash.cc/wallets/">SmartNodes are here!</a></h1>
+<!--
+        <h2><div id="countdown"></div></h2>
+-->
+      </div>
+
+      <div class="alert alert-warning" role="alert">
+        <strong>PLEASE BE AWARE OF SCAMMERS:</strong> <u>In order to run a SmartNode you don't have to send your SMART to anybody!</u> You can manage your node, while you keep your funds safe in your local wallet, this also applies to Masternode Hosting services. At the moment, we advise against using services that offer ways of sharing SMART to run a SmartNode, as it is likely that scammers can use this ask for funds and not return them.
+      </div>
+
+      <div class="alert alert-danger" role="alert">
+        Please <a href="https://github.com/SmartCash/smartcash/releases/tag/v1.1.1">upgrade all your SmartNodes and wallets to v1.1.1</a> by Feb 28th. This upgrade is mandatory. Read our <a href="#Mandatory_Upgrade_v1.1.1">guide on the v1.1.1 upgrade</a>.
+      </div>
+
+      <div class="alert alert-success" role="alert" id="SmartNode_Latest">
+				<p>
+        2018-01-08: <a href="http://smartnodes.cc/files/SmartCash_SmartNode_Setup_Guide_v1.0.pdf">SmartNode Setup Guide v1.0</a> has been released. Other language versions will be announced as available.<br />
+        2018-01-09: <a href="http://smartnodes.cc/files/SmartCash_SmartNode_Setup_Guide_v1.1.pdf">SmartNode Setup Guide v1.1</a> has been released. Guide is now also available in <a href="http://smartnodes.cc/files/SmartCash_SmartNode_Setup_Guide_v1.1_RUS.pdf">Russian</a> and <a href="http://smartnodes.cc/files/SmartCash_Setup_Guide_v1.1_GER.pdf">German</a>. (Thanks to <a href="https://forum.smartcash.cc/t/smartcash-smartnode-setup-guide/2320">Azuuri</a>)<br />
+        <strong>2018-01-11: <a href="https://github.com/SmartCash/smartcash/releases/tag/v1.1.0">SmartNode/Wallet v1.1.0</a> has been released. (Initial SmartNode release)</strong><br />
+        2018-01-13: <a href="http://smartnodes.cc/files/SmartCash_SmartNode_Setup_Guide_v1.2.pdf">SmartNode Setup Guide v1.2</a> has been released. This version is also available in <a href="http://smartnodes.cc/files/SmartCash_Setup_Guide_v1.2_GER.pdf">German</a> and <a href="http://smartnodes.cc/files/SmartCash_SmartNode_Setup_Guide_v1.2_RUS.pdf">Russian</a>. (Thanks to <a href="https://forum.smartcash.cc/t/smartcash-smartnode-setup-guide/2320">Azuuri</a>)<br />
+        2018-01-17: <a href="https://github.com/SmartCash/smartnode">Bash installer for SmartNodes on Ubuntu</a> has been released. (Thanks to <a href="https://forum.smartcash.cc/u/msg768">msg768</a>)<br />
+        2018-01-21: <a href="http://smartnodes.cc/files/CreatingSmartNodeOnMac.pdf">SmartNode Setup Guide for Mac</a> has been released. (Thanks to <a href="https://forum.smartcash.cc/u/controllinghand">controllinghand</a>)<br />
+        2018-01-25: <a href="https://forum.smartcash.cc/t/smartcash-smartnode-setup-guide-v1-2-for-mac-users-including-smartnode-checking-and-anti-ddos-optional-bootstrap/2900">SmartNode Setup Guide v1.2 for Mac Users</a> has been released. (Thanks to <a href="https://forum.smartcash.cc/u/controllinghand">controllinghand</a>)<br />
+        2018-01-27: <a href="https://forum.smartcash.cc/t/smartcash-smartnode-setup-guide-v1-3-for-mac-users-including-smartnode-checking-and-anti-ddos-optional-bootstrap/2900">SmartNode Setup Guide v1.3 for Mac Users</a> has been released. (Thanks to <a href="https://forum.smartcash.cc/u/controllinghand">controllinghand</a>)<br />
+        2018-01-28: <a href="https://www.youtube.com/watch?v=Qkhj1SaDJZA">How To Set Up Your SmartNode Video for MacOS users</a> has been released. (Thanks to <a href="https://forum.smartcash.cc/u/hannahlicious">hannahlicious</a>)<br />
+        2018-01-28: <a href="https://forum.smartcash.cc/t/smartcash-smartnode-setup-guide-v1-4-for-mac-users-including-smartnode-checking-and-anti-ddos-optional-bootstrap/2900">SmartNode Setup Guide v1.4 for Mac Users</a> has been released. (Thanks to <a href="https://forum.smartcash.cc/u/controllinghand">controllinghand</a>)<br />
+        2018-01-29: <a href="https://forum.smartcash.cc/t/smartcash-smartnode-setup-guide-v2-1-mac-version-quick-setup/3022">SmartNode Setup Guide v2.1 for Mac Users Quick Setup</a> has been released. (Thanks to <a href="https://forum.smartcash.cc/u/controllinghand">controllinghand</a>)<br />
+        2018-01-29: <a href="https://forum.smartcash.cc/t/adding-a-2nd-smartcash-smartnode-setup-guide-v2-0-for-mac-users-quick-setup-guide/3019">Adding a 2nd+ SmartNode Setup Guide v2.0 for Mac Users</a> has been released. (Thanks to <a href="https://forum.smartcash.cc/u/controllinghand">controllinghand</a>)<br />
+        2018-02-01: <a href="https://www.youtube.com/watch?v=CEFw6Y1BAMc">How To Set Up Your SmartNode Video for Windows 10 users</a> has been released. (Thanks to <a href="https://forum.smartcash.cc/u/hannahlicious">hannahlicious</a>)<br />
+        2018-02-04: <a href="https://t.me/SmartNodeMonitorBot">SmartNode Monitor Bot on Telegram</a> is live. (Thanks to <a href="https://forum.smartcash.cc/t/smartnode-monitor-telegram-discord/2766">dustinface</a>)<br />
+        2018-02-10: <a href="http://smartnodes.cc/files/SmartNode_Payment_Determination_R3.pdf">SmartNode Payment Determination</a> has been released. (Also added to the <a href="#SmartNode_Payment_Determination">FAQ</a>) (Thanks to <a href="https://forum.smartcash.cc/u/solarminer">Solarminer</a>)<br />
+        2018-02-13: <a href="https://discord.gg/8zTBZ73t">SmartNode Monitor Bot on SmartCash Discord</a> is live. (Thanks to <a href="https://forum.smartcash.cc/t/smartnode-monitor-telegram-discord/2766">dustinface</a>)<br />
+        <strong>2018-02-23: <a href="https://github.com/SmartCash/smartcash/releases/tag/v1.1.1">SmartNode/Wallet v1.1.1</a> has been released. (Stability Improvements)</strong><br />
+        2018-03-09: SmartNode Monitor Bot on <a href="https://discord.gg/8zTBZ73t">SmartCash Discord</a> and <a href="https://t.me/SmartNodeMonitorBot">Telegram</a> has been upgraded to v1.1. (Thanks to <a href="https://steemit.com/smartcash/@dustinface/update-1-1-smartnodemonitorbot">dustinface</a>)<br />
+        2018-03-23: <a href="http://smartnodes.cc/files/SmartCash_SmartNode_Script_Setup_Guide_v2.2.pdf">SmartNode Setup Guide v2.2</a> has been released. (Thanks to <a href="https://forum.smartcash.cc/t/smartcash-smartnode-setup-guide/2320">hoangton</a>)
+        </p>
+      </div>
+
+			<div class="box">
+				<h2 id="SmartNode_Setup">Setup your SmartNode</h2>
+				<h3 id="SmartNode_Setup_Guide">SmartNode Setup Guides</h3>
+				<p>
+					<ul>
+					<li><span class="label label-primary">Outdated</span> <a href="http://smartnodes.cc/files/SmartCash_SmartNode_Setup_Guide_v1.0.pdf">SmartNode Setup Guide v1.0</a></li>
+					<li><span class="label label-primary">Outdated</span> <a href="http://smartnodes.cc/files/SmartCash_SmartNode_Setup_Guide_v1.1.pdf">SmartNode Setup Guide v1.1</a> <a href="http://smartnodes.cc/files/SmartCash_SmartNode_Setup_Guide_v1.1_RUS.pdf"><span class="badge">Russian</span></a> <a href="http://smartnodes.cc/files/SmartCash_Setup_Guide_v1.1_GER.pdf"><span class="badge">German</span></a> (Thanks to <a href="https://forum.smartcash.cc/t/smartcash-smartnode-setup-guide/2320">Azuuri</a>)</li>
+					<li><span class="label label-primary">Outdated</span> <a href="http://smartnodes.cc/files/SmartCash_SmartNode_Setup_Guide_v1.2.pdf">SmartNode Setup Guide v1.2</a> <a href="http://smartnodes.cc/files/SmartCash_SmartNode_Setup_Guide_v1.2_RUS.pdf"><span class="badge">Russian</span></a> <a href="http://smartnodes.cc/files/SmartCash_Setup_Guide_v1.2_GER.pdf"><span class="badge">German</span></a> (Thanks to <a href="https://forum.smartcash.cc/t/smartcash-smartnode-setup-guide/2320">Azuuri</a>)</li>
+					<li><span class="label label-success">Latest</span> <a href="http://smartnodes.cc/files/SmartCash_SmartNode_Script_Setup_Guide_v2.2.pdf">SmartNode Setup Guide v2.2</a> (Thanks to <a href="https://forum.smartcash.cc/t/smartcash-smartnode-setup-guide/2320">hoangton</a>)</li>
+					</ul>
+					<ul>
+					<li><span class="label label-primary">Outdated</span> <a href="http://smartnodes.cc/files/CreatingSmartNodeOnMac.pdf">SmartNode Setup Guide for Mac</a> (Thanks to <a href="https://forum.smartcash.cc/u/controllinghand">controllinghand</a>)</li>
+					<li><span class="label label-primary">Outdated</span> <a href="https://forum.smartcash.cc/t/smartcash-smartnode-setup-guide-v1-2-for-mac-users-including-smartnode-checking-and-anti-ddos-optional-bootstrap/2900">SmartNode Setup Guide v1.2 for Mac Users</a> has been released. (Thanks to <a href="https://forum.smartcash.cc/u/controllinghand">controllinghand</a>)</li>
+					<li><span class="label label-primary">Outdated</span> <a href="https://forum.smartcash.cc/t/smartcash-smartnode-setup-guide-v1-3-for-mac-users-including-smartnode-checking-and-anti-ddos-optional-bootstrap/2900">SmartNode Setup Guide v1.3 for Mac Users</a> has been released. (Thanks to <a href="https://forum.smartcash.cc/u/controllinghand">controllinghand</a>)</li>
+					<li><span class="label label-primary">Outdated</span> <a href="https://forum.smartcash.cc/t/smartcash-smartnode-setup-guide-v1-4-for-mac-users-including-smartnode-checking-and-anti-ddos-optional-bootstrap/2900">SmartNode Setup Guide v1.4 for Mac Users</a> (Thanks to <a href="https://forum.smartcash.cc/u/controllinghand">controllinghand</a>)</li>
+					<li><span class="label label-success">Latest</span> <a href="https://forum.smartcash.cc/t/smartcash-smartnode-setup-guide-v2-1-mac-version-quick-setup/3022">SmartNode Setup Guide v2.1 for Mac Users Quick Setup</a> (Thanks to <a href="https://forum.smartcash.cc/u/controllinghand">controllinghand</a>)</li>
+					<li><span class="label label-success">Latest</span> <a href="https://forum.smartcash.cc/t/secure-your-smartcash-smartnode-vps-on-ubuntu-16-04-with-a-mac-wallet-v1-0/3025">Secure Your SmartNode VPS on Ubuntu 16.04 with a Mac Wallet v1.0</a> (Thanks to <a href="https://forum.smartcash.cc/u/controllinghand">controllinghand</a>)</li>
+					<li><span class="label label-success">Latest</span> <a href="https://forum.smartcash.cc/t/adding-a-2nd-smartcash-smartnode-setup-guide-v2-0-for-mac-users-quick-setup-guide/3019">Adding a 2nd+ SmartNode Setup Guide v2.0 for Mac Users</a> (Thanks to <a href="https://forum.smartcash.cc/u/controllinghand">controllinghand</a>)</li>
+					</ul>
+					<ul>
+					<li><span class="label label-success">Video Guide</span> <a href="https://www.youtube.com/watch?v=Qkhj1SaDJZA">How To Set Up A SmartNode (MacOS users)</a> (Thanks to <a href="https://forum.smartcash.cc/u/hannahlicious">hannahlicious</a>)</li>
+					<li><span class="label label-success">Video Guide</span> <a href="https://www.youtube.com/watch?v=CEFw6Y1BAMc">How To Set Up A SmartNode (Windows 10 users)</a> (Thanks to <a href="https://forum.smartcash.cc/u/hannahlicious">hannahlicious</a>)</li>
+					</ul>
+				</p>
+				<h3>SmartNode Setup Guides for a particular VPS provider</h3>
+				<p>
+					<ul>
+					<li><span class="label label-success">Guide</span> <a href="https://smartcash.blockchainlibrary.org/2018/01/guide-to-createing-a-smartcash-smartnode-vps-in-10-minutes-with-vultr/">Guide to Creating a SmartCash SmartNode VPS in 10 Minutes with Vultr</a> (Thanks to <a href="https://forum.smartcash.cc/u/blockchainlibrary">Blockchain Library</a>)</li>
+					<li><span class="label label-success">Guide</span> <a href="https://smartcash.blockchainlibrary.org/2018/01/improving-the-security-and-reliability-of-your-vultr-smartcash-smartnode/">Improving the Security and Reliability of Your Vultr SmartCash SmartNode</a> (Thanks to <a href="https://forum.smartcash.cc/u/blockchainlibrary">Blockchain Library</a>)</li>
+					<li><span class="label label-success">Guide</span> <a href="https://forum.smartcash.cc/t/how-to-monitor-your-smartcash-smartnode-v2-0-vps-on-digital-ocean/3039">How to Monitor your SmartCash SmartNode v2.0 (VPS on Digital Ocean)</a> (Thanks to <a href="https://forum.smartcash.cc/u/controllinghand">controllinghand</a>)</li>
+					</ul>
+				</p>
+				<h3 id="SmartNode_Bash_Scripts">SmartNode Bash Scripts</h3>
+				<p>
+					<ul>
+					<li><a href="https://github.com/SmartCash/smartnode">Bash installer for SmartNodes on Ubuntu</a> (Thanks to <a href="https://forum.smartcash.cc/u/msg768">msg768</a>)</li>
+					<li><span class="label label-warning">Experimental</span> <a href="https://github.com/kevinrombach/smartnodeinstaller">SmartNode Installer Script</a> (Thanks to <a href="https://forum.smartcash.cc/u/dustinface">dustinface</a>)</li>
+					<li><span class="label label-warning">Experimental</span> <a href="https://github.com/nflaw/smartnode">SmartNode standalone security and cronjob addon</a> (Thanks to <a href="https://forum.smartcash.cc/u/nflaw">nflaw</a>)</li>
+					<li><span class="label label-warning">Experimental</span> <a href="https://github.com/controllinghand/smartnode-checkonly">SmartNode Checker</a> (Thanks to <a href="https://forum.smartcash.cc/t/bash-checker-for-smartnode-on-ubuntu-if-you-already-have-a-smartnode-configured/2936">controllinghand</a>)</li>
+					<li><span class="label label-warning">Experimental</span> <a href="https://github.com/LithMage/smartcash-bootstrap-script-win10">SmartCash TX Index Bootstrap PowerShell script for Windows 10</a> (Thanks to <strong>LithMage</strong>)</li>
+					<li><span class="label label-warning">Experimental</span> <a href="https://steemit.com/smartcash/@lukestokes/scripts-for-managing-multiple-smartcash-smart-nodes-on-one-server">Scripts for Managing Multiple Smart Nodes on One Server</a> (Thanks to <a href="https://forum.smartcash.cc/u/lukestokes">lukestokes</a>)</li>
+					<li><span class="label label-warning">Experimental</span> <a href="https://github.com/controllinghand/smartnode-monitor">SmartNode Check and Monitor script (Are you at best practice setup?)</a> (Thanks to <a href="https://forum.smartcash.cc/t/smartnode-check-and-monitor-script-v1-0-are-you-at-best-practice-setup/3243">controllinghand</a>)</li>
+					<li><span class="label label-warning">Experimental</span> <a href="https://steemit.com/smartcash/@popcornpopper/smartcash-smartnode-first-aid-script">Smartnode First Aid kit</a> (Thanks to <strong>popcornpopper</strong>)</li>
+					<li><span class="label label-warning">Experimental</span> <a href="https://github.com/LithMage/smartnode">SmartNode Upkeep Scripts</a> (Thanks to <strong>LithMage</strong>)</li>
+					<li><span class="label label-warning">Experimental</span> <a href="https://smartcash.blockchainlibrary.org/2018/03/protecting-your-smartcash-smartnode-port-with-anti-ddos-firewall-rules/">Protecting your SmartCash SmartNode Port with Anti-DDOS Firewall Rules</a> (Thanks to <strong><a href="https://forum.smartcash.cc/u/blockchainlibrary">Blockchain Library</a></strong>)</li>
+					</ul>
+				</p>
+				<h3>SmartNode Monitoring</h3>
+				<p>
+					<ul>
+					<li><span class="label label-info">New</span> <a href="https://t.me/SmartNodeMonitorBot">SmartNode Monitor Bot on Telegram</a> (Thanks to <a href="https://forum.smartcash.cc/t/smartnode-monitor-telegram-discord/2766">dustinface</a>)</li>
+					<li><span class="label label-info">New</span> <a href="https://discord.gg/8zTBZ73">SmartNode Monitor Bot on SmartCash Discord</a>, just PM <i>@SmartNodeMonitor#5083</i> (Thanks to <a href="https://forum.smartcash.cc/t/smartnode-monitor-telegram-discord/2766">dustinface</a>)</li>
+					<li><span class="label label-success">Guide</span> <a href="https://steemit.com/smartcash/@dustinface/smartnodemonitorbot">SmartNode Monitor Bot Guide</a> <a href="https://steemit.com/smartcash/@dustinface/update-1-1-smartnodemonitorbot"><span class="badge">UPDATE 1.1</span></a> by <strong><a href="https://forum.smartcash.cc/u/dustinface">dustinface</a></strong> (Thanks!)</li>
+					</ul>
+				</p>
+			</div>
+
+			<div class="box">
+				<h2 id="Mandatory_Upgrade_v1.1.1">SmartNode Mandatory Upgrade v1.1.1</h2>
+				<p>
+				As of Feb 23rd 2018 <a href="https://github.com/SmartCash/smartcash/releases/tag/v1.1.1">Smartnode/Wallet v1.1.1</a> has been released.<br />
+				This upgrade includes fundamental stability improvements such as SmartNode payment stability and core stability fixes.
+				</p>
+				<p>
+				SmartNode operators are obliged to both upgrade their SmartNodes and desktop wallets <u>until Feb 28, 2018 13:20 UTC</u>, otherwise their SmartNodes will be excluded from the SmartNode reward payment rotation.
+				</p>
+				<p>
+				<strong>BE AWARE:</strong> With this upgrade you will need to restart your SmartNode from your local wallet and therefore <u>lose your current place in the payment queue</u>. Unfortunately, this cannot be avoided. If you don't want to lose your spot, you can try to do the upgrade right after receiving a reward payment.
+				</p>
+				<p>
+				Upgrade to v1.1.1 as following:
+				</p>
+				<ol>
+					<li>Connect to your VPS with root credentials and run the following command (PPA):
+						<p><code>smartcash-cli stop && apt-get update && sleep 5 && apt-get install smartcashd && sleep 8 && smartcashd</code></p></li>
+					<li><p>Delete the peers.dat files with <code>rm ~/.smartcash/peers.*</code></p></li>
+					<li><p>Check your SmartNode status with <code>smartcash-cli smartnode status</code><br />
+					It should return <strong>"status": "Not capable smartnode: Invalid protocol version"</strong></p></li>
+					<li><p>Switch to your local wallet and install <a href="https://smartcash.cc/wallets">SmartNode/Wallet v1.1.1 for Windows/Linux/MacOS</a> accordingly.</p></li>
+					<li><p>Open the SmartNodes tab, select the specific SmartNode you just upgraded and click on 'Start alias'.</p></li>
+					<li><p>Wait until the SmartNode status changes from PRE_ENABLED to ENABLED and you successfully upgraded to v1.1.1.</p></li>
+				</ol>
+				<p>
+				While the SmartNodes network is migrating from v1.1.0 to v1.1.1, you may experience interruptions (like high CPU loads) with SmartNodes that are still running on the old version. Therefore it is recommended to proceed with your upgrade asap.
+				</p>
+				<p>
+				<hr>
+				SmartNode Mandatory Upgrade v1.1.1 Guide written and maintained by <a href="https://forum.smartcash.cc/u/nflaw">nflaw</a>. Thanks to <strong>Proteus</strong> for the answers. (Last updated: <strong>2018-02-23</strong>)
+				</p>
+			</div>
+
+			<div class="box">
+				<h2 id="SmartNode_Hardening">Hardening your SmartNode</h2>
+				<p>
+				<strong>BE CAREFUL:</strong> Please do only apply changes illustrated below if you know what you are doing.<br />
+				Also <u>make sure you have done a backup/snapshot of your VPS first</u>, so that you are able to recover in case of an error.<br />
+				Most of the following changes are already covered by <a href="#SmartNode_Bash_Scripts">SmartNode Bash Scripts</a>.<br />
+				The steps described in this section have been written to the advantage that they all can be applied separately.
+				</p>
+				<h3><span class="label label-warning">Security</span> Change your SSH port</h3>
+				<p>Think of a number you want to use instead of the default SSH port number (22).<br />
+				In this example we have chosen port number 15735. (But please make up your own!)
+				</p>
+				<ol>
+					<li>Whitelist your custom ssh port with your VPS provider. The procedure depends on which service you are using. You have to basically login to your VPS web front-end, navigate to network security rules (or similar) and add a Custom TCP Rule which allows inbound connections to this specific port.</li>
+					<li>Connect to your VPS with root credentials and add the custom ssh port to your firewall:
+						<p><code>ufw disable</code></p>
+						<p><code>ufw allow 15735/tcp</code></p>
+						<p><code>ufw limit 15735/tcp</code></p>
+						<p><code>ufw logging on</code></p>
+						<p><code>ufw enable</code></p>
+						<p><u>If you used the SmartNode Setup Guide to begin with, this step is crucial.</u></p></li>
+					<li>Change the default port number to the custom one in the SSH daemon:
+						<p><code>pico /etc/ssh/sshd_config</code></p>
+						<p>Change the line <code>Port 22</code> to your custom port, in this example <code>Port 15735</code> and save.</p>
+					<li>Recheck with <code>ufw status</code> and <code>pico /etc/ssh/sshd_config</code> if your custom port changes have been applied.</li>
+					<li>Reboot your server.</li>
+					<li>Now connect to your VPS using your custom SSH port. If everything went fine, you can remove the default SSH port entrys from your firewall now:</li>
+						<p><code>ufw delete allow 22/tcp</code></p>
+						<p><code>ufw delete limit 22/tcp</code></p>
+					<li>Reboot your server once again.</li>
+					<li>Finally login to the web front-end of your VPS provider and remove the default SSH port 22 from the list of open ports (list where you added your custom port in step 1).</li>
+					</li>
+				</ol>
+				<h3><span class="label label-primary">Stability</span> Setup cronjobs to keep SmartNode always running</h3>
+				<ol>
+					<li>Connect to your VPS with root credentials and create a directory for the cronjob scripts:
+						<p><code>mkdir smartnode</code></p>
+						<p><code>cd ~/smartnode/</code></p></li>
+					<li>Download the appropriate scripts (taken from the <a href="https://github.com/SmartCash/smartnode">SmartNode Bash installer</a> by <a href="https://forum.smartcash.cc/u/msg768">msg768</a>):</p>
+						<p><code>wget https://raw.githubusercontent.com/SmartCash/smartnode/master/makerun.sh</code></p>
+						<p><code>wget https://raw.githubusercontent.com/SmartCash/smartnode/master/checkdaemon.sh</code></p></li>
+					<li>Give execute permission to the cron scripts:</p>
+						<p><code>chmod 0700 ./makerun.sh</code></p>
+						<p><code>chmod 0700 ./checkdaemon.sh</code></p></li>
+					<li>Open crontabs with <code>crontab -e</code> and add the following lines to it:
+						<p><code>@reboot smartcashd</code></p>
+						<p><code>*/5 * * * * ~/smartnode/makerun.sh</code></p>
+						<p><code>*/30 * * * * ~/smartnode/checkdaemon.sh</code></p></li>
+					<li>Apply the cronjobs by reloading them with <code>/etc/init.d/cron reload</code> or <code>service cron reload</code></li>
+				</ol>
+				<h3><span class="label label-primary">Stability</span> Ensure SmartNode software is always up to date</h3>
+				<ol>
+					<li>Connect to your VPS with root credentials and create a directory for the cronjob script (if it not already exists):
+						<p><code>mkdir smartnode</code></p>
+						<p><code>cd ~/smartnode/</code></p></li>
+					<li>Download the appropriate script (taken from the <a href="https://github.com/SmartCash/smartnode">SmartNode Bash installer</a> by <a href="https://forum.smartcash.cc/u/msg768">msg768</a>):</p>
+						<p><code>wget https://raw.githubusercontent.com/SmartCash/smartnode/master/upgrade.sh</code></p></li>
+					<li>Give execute permission to the cron script:</p>
+						<p><code>chmod 0700 ./upgrade.sh</code></p></li>
+					<li>Open crontabs with <code>crontab -e</code> and add the following line to it:
+						<p><code>0 0 */1 * * ~/smartnode/upgrade.sh</code></p></li>
+					<li>Apply the cronjob by reloading with <code>/etc/init.d/cron reload</code> or <code>service cron reload</code></li>
+				</ol>
+				<h3><span class="label label-primary">Stability</span> Setup cronjob to clear debug.log</h3>
+				<p>
+				This step is to prevent the debug.log from getting too large.
+				</p>
+				<ol>
+					<li>Connect to your VPS with root credentials and create a directory for the cronjob script (if it not already exists):
+						<p><code>mkdir smartnode</code></p>
+						<p><code>cd ~/smartnode/</code></p></li>
+					<li>Download the appropriate script (taken from the <a href="https://github.com/SmartCash/smartnode">SmartNode Bash installer</a> by <a href="https://forum.smartcash.cc/u/msg768">msg768</a>):</p>
+						<p><code>wget https://raw.githubusercontent.com/SmartCash/smartnode/master/clearlog.sh</code></p></li>
+					<li>Give execute permission to the cron script:</p>
+						<p><code>chmod 0700 ./clearlog.sh</code></p></li>
+					<li>Open crontabs with <code>crontab -e</code> and add the following line to it:
+						<p><code>0 0 */2 * * ~/smartnode/clearlog.sh</code></p></li>
+					<li>Apply the cronjob by reloading with <code>/etc/init.d/cron reload</code> or <code>service cron reload</code></li>
+				</ol>
+				<h3><span class="label label-primary">Stability</span> Set a Connection Limit</h3>
+				<ol>
+					<li>Connect to your VPS with your smartadmin user and stop your SmartNode: <code>smartcash-cli stop</code></li>
+					<li><p>Open your smartcash.conf with <code>pico ~/.smartcash/smartcash.conf</code> and add the following line:</p>
+				<p><code>maxconnections=64</code></p></li>
+					<li>Restart your SmartNode: <code>smartcashd</code></li>
+				</ol>
+				<h3><span class="label label-primary">Stability</span> Allocating a Swap File</h3>
+				<p>
+				This step is especially recommended to those who run a VPS with less than 2 GB RAM. It virtually enhances your RAM using a swap file.
+				</p>
+				<ol>
+					<li>Make you sure you have about 4 GB additional space to spare on your VPS.</li>
+					<li>Connect to your VPS with root credentials and run the following commands:
+						<p><code>fallocate -l 4G /swapfile</code></p>
+						<p><code>chmod 600 /swapfile</code></p>
+						<p><code>mkswap /swapfile</code></p>
+						<p><code>swapon /swapfile</code></p>
+					</li>
+					<li>Open <code>pico /etc/fstab</code> and add the following line at the end of the file (press tab to separate each word/number):
+						<p><code>/swapfile none swap sw 0 0</code></p>
+					</li>
+					<li>Finally reboot your server, a 4 GB sized swap file should have been created.</li>
+				</ol>
+				<hr>
+				<p>SmartNode Hardening Guide written and maintained by <a href="https://forum.smartcash.cc/u/nflaw">nflaw</a>. (Last updated: <strong>2018-01-30</strong>)</p>
+			</div>
+
+			<div class="box">
+				<h2 id="SmartNode_Commands">SmartNode Basic Commands</h2>
+<table class="table table-bordered">
+    <caption>Note: If you didn't install via PPA, put <code>./</code> in front of the command.</caption>
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Command</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Start smartcash client</td> 
+            <td><code>smartcashd</code></td> 
+        </tr>
+        <tr>
+            <td>Display smartcash client info</td> 
+            <td><code>smartcash-cli getinfo</code></td>
+        </tr>
+        <tr> 
+            <td>Print number of all known smartnodes<br />
+            (optional: 'ps', 'enabled', 'all', 'qualify')
+            </td> 
+            <td><code>smartcash-cli smartnode count</code></td>
+        </tr>
+        <tr> 
+            <td>Print info on current smartnode winner to be paid the next block<br />
+            (calculated locally)</td> 
+            <td><code>smartcash-cli smartnode current</code></td>
+        </tr>
+        <tr> 
+            <td>Generate new smartnodeprivkey</td> 
+            <td><code>smartcash-cli smartnode genkey</code></td>
+        </tr>
+        <tr>
+            <td>Start smartnode</td> 
+            <td><code>smartcash-cli smartnode start</code></td>
+        </tr>
+        <tr> 
+            <td>Stop smartnode</td> 
+            <td><code>smartcash-cli stop</code></td>
+        </tr>
+        <tr> 
+            <td>Print smartnode status information</td> 
+            <td><code>smartcash-cli smartnode status</code></td>
+        </tr>
+         <tr> 
+            <td>Print list of all known smartnodes<br />
+            (see smartnodelist for more info)
+            </td> 
+            <td><code>smartcash-cli smartnode list</code></td>
+        </tr>
+         <tr> 
+            <td>Print info on next smartnode winner to vote for</td> 
+            <td><code>smartcash-cli smartnode winner</code></td>
+        </tr>
+         <tr> 
+            <td>Print list of smartnode winners</td> 
+            <td><code>smartcash-cli smartnode winners</code></td>
+        </tr>
+         <tr> 
+            <td>Get a list of smartnodes in different modes</td> 
+            <td><code>smartcash-cli smartnodelist</code></td>
+        </tr>
+         <tr> 
+            <td>Print number of seconds smartnode recognized by the network as enabled<br />
+            (since latest issued "smartnode start/start-many/start-alias")
+            </td> 
+            <td><code>smartcash-cli smartnodelist activeseconds &lt;collateral txid&gt;</code></td>
+        </tr>
+         <tr> 
+            <td> Print ip address associated with a smartnode<br />
+            (can be additionally filtered, partial match)
+            </td> 
+            <td><code>smartcash-cli smartnodelist addr &lt;collateral txid&gt;</code></td>
+        </tr>
+         <tr> 
+            <td>Print info in format<br /> 'status protocol payee lastseen activeseconds lastpaidtime lastpaidblock IP'<br />
+            (can be additionally filtered, partial match)
+            </td> 
+            <td><code>smartcash-cli smartnodelist full</code></td>
+        </tr>
+         <tr> 
+            <td>Print the last block height a node was paid on the network</td> 
+            <td><code>smartcash-cli smartnodelist lastpaidblock &lt;collateral txid&gt;</code></td>
+        </tr>
+         <tr> 
+            <td>Print the last time a node was paid on the network</td> 
+            <td><code>smartcash-cli smartnodelist lastpaidtime &lt;collateral txid&gt;</code></td>
+        </tr>
+         <tr> 
+            <td>Print timestamp of when a smartnode was last seen on the network</td> 
+            <td><code>smartcash-cli smartnodelist lastseen &lt;collateral txid&gt;</code></td>
+        </tr>
+          <tr> 
+            <td> Print Smartcash address associated with a smartnode<br />
+            (can be additionally filtered, partial match)
+            </td> 
+            <td><code>smartcash-cli smartnodelist payee &lt;collateral txid&gt;</code></td>
+        </tr>
+          <tr> 
+            <td>Print protocol of a smartnode<br />
+            (can be additionally filtered, exact match)
+            </td> 
+            <td><code>smartcash-cli smartnodelist protocol &lt;collateral txid&gt;</code></td>
+        </tr>
+          <tr> 
+            <td>Print rank of a smartnode based on current block</td> 
+            <td><code>smartcash-cli smartnodelist rank &lt;collateral txid&gt;</code></td>
+        </tr>
+          <tr> 
+            <td> Print smartnode status:<br />
+            PRE_ENABLED / ENABLED /<br />
+            EXPIRED / WATCHDOG_EXPIRED /<br />
+            NEW_START_REQUIRED / UPDATE_REQUIRED /<br />
+            POSE_BAN / OUTPOINT_SPENT<br />
+            (can be additionally filtered, partial match)
+            </td> 
+            <td><code>smartcash-cli smartnodelist status &lt;status&gt;</code></td>
+        </tr>
+        <tr> 
+            <td>Force reindex of blockchain data</td> 
+            <td><code>smartcashd -reindex-chainstate</code></td>
+        </tr>
+    </tbody>
+</table>
+				<p>
+				</p>
+			</div>
+
+			<div class="box">
+				<h2 id="SmartNode_FAQ">SmartNode FAQ</h2>
+				<h3>What are the requirements to run a SmartNode?</h3>
+				<p>
+					<ul>
+					<li>10,000 SMART</li>
+					<li>A computer for running a local wallet to start nodes and hold funds</li>
+					<li>A VPS server for remote node running 24hrs/day with the following specs:</li>
+						<ul>
+							<li>1GB RAM (about half used for OS and half for daemon)</li>
+							<li>20GB drive (less than 1GB used for wallet, some for OS, and some for future.)</li>
+							<li>1 Static IPV4 Address per node (IPV4 address that never changes) (No IPV6)</li>
+						</ul>
+					</ul>
+				</p>
+				<h3>How can I speed up the blockchain syncing for my SmartNode?</h3>
+				<p>Please refer to the <a href="#SmartNode_bootstrap_download">bootstrap download</a> below.</p>
+				<p>If you are working with the SmartNode Setup Guide, you should apply the bootstrap within Section 8 after creating the smartcash.conf and <u>before running smartcashd</u>, type:
+				<p><code>wget https://smartcash.cc/txindexstrap.zip</code></p>
+				<p><code>unzip txindexstrap.zip</code></p>
+				<p><code>mv blocks ~/.smartcash</code></p>
+				<p><code>mv chainstate ~/.smartcash</code></p>
+				<p><code>rm txindexstrap.zip</code></p>
+				</code>
+				<h3>Is there a install script for SmartNodes?</h3>
+				<p>Yes, there is a <a href="https://github.com/SmartCash/smartnode">bash installer for SmartNodes on Ubuntu</a>. It comes with cronjobs to make sure that your node is always running and up-to-date as well as secure against DDoS attacks.</p>
+				<p>Please not that this installer is only suitable for a dedicated VPS. The anti-DDoS script in this installer will disable all ports including the HTTP, HTTPS and DNS ports. It will only leave the SmartNode port open as well as a custom port for SSH.</p>
+				<p>There are also several other <a href="#SmartNode_Bash_Scripts">custom SmartNode bash scripts</a> provided by members of the SmartCash Community.
+				<h3>How long does it take for my SmartNode to change it's status from PRE_ENABLED to ENABLED?</h3>
+				<p>It should take about 10 to 20 minutes or less. If it takes longer than that you can run <code>smartcash-cli smartnode status</code> and it will show you why it can't proceed.</p>
+				<p>If it turns to EXPIRED you have to check if there's something wrong with your setup.</p>
+				<h3>Do I have to have the desktop wallet always on when running a SmartNode?</h3>
+				<p>No, as soon as the SmartNode reached it's ENABLED status, you basically just have to make sure that you VPS keeps running. The software wallet enables you to monitor and re-enable your node.</p>
+				<h3>When did SmartNode reward payments start?</h3>
+				<p>SmartNode rewards were activated at block height 300,000 on Jan 31, 2018 5:25:00 AM UTC.</p>
+				<h3 id="SmartNode_Payment_Determination">How are SmartNode reward payments determined?</h3>
+				<p>SmartNode payments in SmartCash wallet version 1.1.0 are determined using a decentralised deterministic queue with probability driven selection.</p>
+				<p>Every SmartNode appears in the global list. Their position in this list is determined by the time from the last payment. New SmartNodes and SmartNodes that received a payment are placed at the end of the list. It is recommended to only use the command ‘start-missing' to start SmartNodes since it will only start nodes that need to be started. You can also use ‘start-alias’ and specify the specific node you want to start. The start-all command will reset the payment queue on any active nodes.</p>
+				<p>As SmartNodes are moved to the end of the global list, the remaining SmartNodes slowly migrate towards the top of the list. Once a SmartNode reaches the top 10% of the global list, it is eligible for selection from the selection pool. <i>As an example, if there are 8000 active SmartNodes, the top 800 SmartNodes in the global list are eligible for selection.</i></p>
+				<p>Once in the selection pool, selection for payment is determined by the block hash and transaction ID which is used to randomly select the next node in the pool to pay.</p>
+				<h3>How are the SmartNode reward payment intervals calculated?</h3>
+				<p>To calculate the average days between payment intervals (after the first payment), we can use this formula:</p>
+				<p><strong>SmartNode Payment Interval in days = (Total Global Enabled SmartNodes) / 1571</strong></p>
+				<p>This represents the average days between payments. Payments vary widely based on the random selection parameters. Some payments can be 11 days and some 1 day. You should not expect a payment before 5 days from starting a node with a new 10,000 SmartCash transaction.</p>
+				<p>At 8000 total enabled nodes a payment interval would be about 5 days with a range of 1-11 days.</p>
+				<h3>How to ensure my SmartNode is eligible for reward payments?</h3>
+				<p>
+					<ul>
+					<li>SmartNodes must have a <strong>unique SmartCash address</strong> per 10k collateral transaction.</li>
+					<li>SmartNodes must have a <strong>unique static IPV4 address</strong> per smartnode the IP address needs to be the same as what is used in the smartnode.conf file.</li>
+					<li>SmartNodes must <strong>run 24/7 and not stop for longer than 1 hour</strong> or they drop off the payment queue. Any transaction that <strong>sends from the specific 10,000 SMART</strong> collateral transaction will drop the node off from the payment queue.</li>
+					<li>SmartNodes also qualify for SmartRewards. SmartRewards are paid on the 25th of each month as long as there has been over 1000 in an address and no transaction sent from that address from the previous 25th. Sending a smartnode payment from your wallet will disqualify rewards even if you don’t send from the 10,000 SMART collateral transaction.</li>
+					</ul>
+				<strong>Note:</strong> There is a <u>delay for first payment</u> after the initial 10,000 smart collateral transaction. This delay is calculated by <strong>(2.6 minutes) * (number of enabled nodes)</strong>. After the first payment, the rewards are calculated as stated above.
+				Example: If I make my 10,000 smart collateral transactions to a new address for a fresh node with the current 8000 node count, it will take up to 14 days for the first reward. (Thanks to <a href="https://steemit.com/smartcash/@allemeister/smartnode-rewards-explained">allemeister</a> for pointing this out.)
+				</p>
+				<h3>Node status error "Not capable smartnode: Smartnode not in smartnode list"</h3>
+				<p>You most likely haven't applied the steps described in Section 9 of the <a href="#SmartNode_Setup_Guide">Setup Guide</a> correctly. The final steps after setting up the VPS are that you move to your desktop computer once again, edit the smartnode.conf there and finally start the node from your software wallet (SmartNodes tab).</p>
+				<h3>Node status error "Not capable smartnode: Can't detect valid external address ...</h3>
+				<p>Your hosting provider most likely doesn't support automatically assignation of the external IP or IPv4. This issue has been reported with AWS (Amazon Web Services), among others.
+It can be solved by adding the following line to smartcash.conf on your VPS:
+<code>externalip=PUT_EXTERNAL_IP_OF_YOUR_NODE_HERE</code></p>
+				<h3>Where do I get further support regarding SmartNodes?</h3>
+				<p>Please visit <a href="https://discord.gg/BDUh8jr">#smartnodes on Discord</a>, you can also post to the dedicated category on <a href="https://forum.smartcash.cc/c/smartnodes">SmartCash Community Forums</a>, follow <a href="https://twitter.com/smartcashassist">SmartCash support on Twitter</a> or consult our <a href="https://smartcash.freshdesk.com">SmartCash support platform</a>.</p>
+				<hr>
+				<p>Frequently asked questions and answers on SmartNodes compiled from Discord by <a href="https://forum.smartcash.cc/u/nflaw">nflaw</a>. (Last updated: <strong>2018-02-11</strong>)</p>
+			</div>
+<!--
+      <div id="root"></div>
+-->
+      <div class="row">
+        <div class="col-md-6">
+			<div class="box">
+				<h3 id="SmartNode_bootstrap_download">SmartCash Blockchain Download</h3>
+				<p>To assist in speeding up the syncing of your SmartNode, you can download a bootstrap of the blockchain here. <strong>But make sure you set <code>txindex=1</code> in smartcash.conf first.</strong></p>
+				<p><table class="table">
+				<tbody>
+					<tr>
+						<td><a class="btn btn-default" href="https://smartcash.cc/txindexstrap.zip" role="button">Download &raquo;</a></td>
+						<td>zip</td>
+						<td><a href="https://smartcash.cc/txindexstrap.zip">https://smartcash.cc/txindexstrap.zip</a></td>
+					</tr>
+				</tbody>
+				</table></p>
+				<p>Bootstrap is updated on a regular basis.</p>
+				<p>This download is kindly provided by <strong><a href="https://smartcash.cc/">SmartCash</a></strong></p>
+			</div>
+        </div>
+        <div class="col-md-6">
+			<div class="box">
+				<h3>SmartCash Ressources</h3>
+				<p><a href="https://smartcash.cc">SmartCash Website</a></p>
+				<p><a href="https://explorer3.smartcash.cc">SmartCash BlockExplorer</a></p>
+				<p><a href="https://forum.smartcash.cc">SmartCash Forum</a></p>
+				<p><a href="https://discordapp.com/invite/BDUh8jr">SmartCash on Discord</a></p>
+				<p><a href="https://www.reddit.com/r/smartcash">SmartCash on Reddit</a></p>
+				<p><a href="https://twitter.com/scashofficial">SmartCash on Twitter</a></p>
+				<p><a href="https://steemit.com/@smartcash">SmartCash on Steem</a></p>
+				<p><a href="https://t.me/SmartCashChat">SmartCash on Telegram</a></p>
+			</div>
+		</div>
+      </div>
+
+      <hr>
+
+      <footer class="footer">
+              <p><a href="http://smartnodes.cc">SmartNodes.cc</a> services provided by <a href="https://forum.smartcash.cc/u/nflaw">nflaw</a> | Donate: SP8AVfZkThkPtf8WBfqnEmYi27FjHguJTB <br /> GFX by <strong>trance929</strong> and <strong>camakin</strong> | Built and hosted on <a href="https://github.com/smartnodescc">Github (open source project)</a></p>
+      </footer>
+
+    </div> <!-- /container -->
+
+<!--
+	<script src="js/countdown.js"></script>
+-->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+<!--
+  <script type="text/javascript" src="/bundle.js"></script>
+-->
+  </body>
 </html>
